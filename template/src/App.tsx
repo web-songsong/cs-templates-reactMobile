@@ -5,6 +5,10 @@ import { observer, inject } from 'mobx-react'
 import NotFound from './pages/not-found'
 const App = inject('login')(
   observer(({ login }) => {
+  const documentStyle = (config)=>{
+    let { background } = config
+      background && (document.body.style.background = background)
+    }
     return (
       <BrowserRouter>
         <Switch>
@@ -15,6 +19,7 @@ const App = inject('login')(
                 exact
                 path={item.path}
                 render={props => {
+                  item.config && documentStyle(item.config)
                   return item.auth && !login.userToken ? (
                     <Redirect to="/login" {...props} />
                   ) : (

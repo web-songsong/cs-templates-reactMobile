@@ -8,6 +8,7 @@ interface RouterAPI extends RouteProps {
   auth?: boolean
   path?: string
   component?: any
+  config?: any
 }
 
 const routes: Array<RouterAPI> = [...home, ...login]
